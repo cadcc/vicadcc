@@ -1,0 +1,22 @@
+<div class="bus-container">
+  <div class="info-bus">
+    <div class="bus-direccion">
+      <i class="fa fa-compass" aria-hidden="true"></i>
+      {{this.getServicio().direccion}}
+    </div>
+    <div class="bus-servicio">
+      <i class="fa fa-bus" aria-hidden="true"></i>
+      {{this.getServicio().servicio}}
+    </div>
+  </div>
+  <div class="datos-bus">
+    <div class="bus-tiempo">
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+      {{this.getServicio().tiempoMin}}-{{this.getServicio().tiempoMax}}min
+    </div>
+    <div class="bus-distancia">
+      <i class="fa fa-flag-checkered small-icon" aria-hidden="true"></i>
+      {{this.getServicio().distancia}}
+    </div>
+  </div>
+</div>

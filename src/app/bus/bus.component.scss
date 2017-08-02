@@ -1,0 +1,49 @@
+.bus-container {
+  .info-bus, .datos-bus {
+    width:49%;
+    height:100px;
+    font-size:40px;
+    text-align:center;
+    display:inline-block;
+    box-sizing: border-box;
+  }
+
+  .bus-servicio {
+    box-sizing: border-box;
+    font-size: 40px;
+    font-family: 'Comfortaa', cursive;
+    padding:10px 5px;
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bus-direccion {
+    box-sizing: border-box;
+    font-size: 30px;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 5px;
+    width:100%;
+  }
+
+  .bus-tiempo {
+    box-sizing: border-box;
+    font-size: 28px;
+    font-family: 'Nunito', sans-serif;
+    padding:10px 5px;
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bus-distancia {
+    box-sizing: border-box;
+    font-size: 30px;
+    font-family: 'Comfortaa', cursive;
+    padding: 10px 5px;
+    width:100%;
+  }
+
+  .small-icon {
+    font-size:smaller;
+  }
+
+}

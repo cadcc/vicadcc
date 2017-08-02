@@ -1,0 +1,17 @@
+.date-component {
+  width: 100%;
+  text-align: center;
+
+  .date, .class-week {
+    padding: 10px;
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .time {
+    padding: 10px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 80px;
+  }
+}

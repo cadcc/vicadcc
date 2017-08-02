@@ -1,0 +1,22 @@
+.weather-component {
+
+  padding:10px;
+  text-align: center;
+
+  .weather-image {
+    display: inline-block;
+    width:96px;
+    height:96px;
+    vertical-align: middle;
+
+  }
+
+  .temperature {
+    display: inline-block;
+    font-family: 'Comfortaa', cursive;
+    font-size: 80px;
+    padding:10px;
+    vertical-align: middle;
+  }
+
+}
