@@ -26,8 +26,8 @@ export const CODE_IMAGES = {
     '24': 'windy', // Windy
     '25': 'windy', // Cold
     '26': 'cloudy', // Cloudy
-    '27': 'partial-night', // Mostly Cloudy Night
-    '28': 'partial-day', // Mostly Cloudy Day
+    '27': 'cloudy', // Mostly Cloudy Night
+    '28': 'cloudy', // Mostly Cloudy Day
     '29': 'partly-night', // Partly Cloudy Night
     '30': 'partly-day', // Partly Cloudy Day
     '31': 'clear-night', // Clear Night
