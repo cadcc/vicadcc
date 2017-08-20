@@ -28,38 +28,48 @@ export class BusComponent implements OnInit {
 
   ngOnInit() {
     this.getBusData();
-    setInterval(() => this.getBusData(), 1000 * 60);
     setInterval(() => {
-      this.currentService = (this.currentService + 1) % Object.keys(this.services).length;
-    }, 1000 * 7);
+      const totalBuses = Object.keys(this.services).length;
+      const nextService = (this.currentService + 1) % totalBuses;
+      if (!isNaN(nextService)) {
+        this.currentService = nextService;
+        console.log('Mostrando bus ' + (nextService + 1) + ' de ' + totalBuses + '...');
+        if (this.currentService === totalBuses - 1) {
+          this.getBusData();
+        }
+      }
+    }, 1000 * 7 );
 
   }
 
   private getBusData() {
     const newServices = {};
-    this.PARADEROS.forEach((paradero, i, paraderos) => {
+    this.PARADEROS.forEach((paradero, i) => {
       const codigo = paradero['codigo'];
       fetch(this.BUS_API + '?paradero=' + codigo).then((response) => {
         return response.json();
       }).then((data) => {
-        console.log(paradero);
         data.servicios.forEach((servicio) => {
           const servicioId = (servicio.servicio + '-' + servicio.direccion);
-          if (servicio.valido && !(servicioId in this.services)) {
+          if (servicio.valido && !(servicioId in newServices)) {
             servicio.direccion = paradero.direccion;
             servicio.distancia = servicio.distancia.split(' ')[0] + 'm';
             const tiempoSplit = servicio.tiempo.split(' ');
             if (tiempoSplit[0] === 'Menos') {
               servicio.tiempoMin = 0;
-              servicio.tiempoMax = 5;
-            } else {
+              servicio.tiempoMax = tiempoSplit[2];
+            } else if (tiempoSplit[1] === 'menos') {
+              servicio.tiempoMin =  0;
+              servicio.tiempoMax = tiempoSplit[3];
+            }else {
               servicio.tiempoMin =  tiempoSplit[1];
               servicio.tiempoMax = tiempoSplit[3];
             }
-            this.services[servicioId] = servicio;
+            newServices[servicioId] = servicio;
             }
         });
-        if (paraderos.length === i) {
+        if (this.PARADEROS.length === i + 1) {
+          console.log('actualizando servicios de Bus...');
           this.services = newServices;
         }
       }).catch((ex) => {

@@ -1,6 +1,4 @@
 .weather-component {
-
-  padding:10px;
   text-align: center;
 
   .weather-image {
@@ -15,8 +13,11 @@
     display: inline-block;
     font-family: 'Comfortaa', cursive;
     font-size: 80px;
-    padding:10px;
     vertical-align: middle;
   }
 
+}
+
+.weather-attribution {
+  text-align: center;
 }

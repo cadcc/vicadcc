@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-posters',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostersComponent implements OnInit {
 
-  private POSTER_API = 'https://www.cadcc.cl/wp-json/wp/v2/posts?per_page=3&categories=91&_embed';
+  private POSTER_API = 'https://www.cadcc.cl/wp-json/wp/v2/posts?per_page=10&categories=91&_embed';
   private posters = [];
   private currentPoster = 0;
 
@@ -15,7 +16,7 @@ export class PostersComponent implements OnInit {
 
   ngOnInit() {
     this.getPosterData();
-    setInterval(() => this.getPosterData(), 1000 * 60 * 60);
+    setInterval(() => this.getPosterData(), 1000 * 60 * 5);
     setInterval(() => {
       this.currentPoster = (this.currentPoster + 1) % this.posters.length;
     }, 1000 * 20);
@@ -30,6 +31,12 @@ export class PostersComponent implements OnInit {
         this.posters.pop();
       }
       data.forEach((post) => {
+        if (post.screenLimitDate !== '') {
+          const limitDate = moment(post.screenLimitDate);
+          if (moment() > limitDate) {
+            return;
+          }
+        }
         const featured = post._embedded;
         if ('wp:featuredmedia' in featured) {
           this.posters.push(featured['wp:featuredmedia'][0]['source_url']);
@@ -41,7 +48,7 @@ export class PostersComponent implements OnInit {
   }
 
   public getPosterImage() {
-    if (this.posters.length == 0) return '';
+    if (this.posters.length === 0) return '';
     return this.posters[this.currentPoster];
   }
 

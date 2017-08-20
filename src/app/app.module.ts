@@ -6,6 +6,8 @@ import { DateComponent } from './date/date.component';
 import { WeatherComponent } from './weather/weather.component';
 import { PostersComponent } from './posters/posters.component';
 import { BusComponent } from './bus/bus.component';
+import { WeatherService } from './weather/weather.service';
+import { MarqueeComponent } from './marquee/marquee.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,12 @@ import { BusComponent } from './bus/bus.component';
     WeatherComponent,
     PostersComponent,
     BusComponent,
+    MarqueeComponent,
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

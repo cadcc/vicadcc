@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {WeatherService} from './weather/weather.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +10,19 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
   private backgroundColor: string;
 
-  private MORNING = 0x0649ff;
-  private AFTERNOON = 0x06c4ff;
-  private EVENING = 0xff0024;
-  private NIGHT = 0x000055;
+
+  // sunrise-start (sunrise-1h), morning (sunrise), afternoon((sunrise+sunset)/2), sunset-start(sunset-1h), night (sunset)
+  // private SKY_COLORS = [0xff1194, 0x0649ff, 0x06c4ff, 0xff0024, 0x000055];
+
+  private SKY_COLORS = [0x000055, 0xff1194, 0x0649ff, 0xff0024];
+
+
+  constructor(private weather: WeatherService) { }
 
   ngOnInit() {
     this.setNewColor();
     setInterval(() => this.setNewColor(), 1000);
   }
-
 
 
   private colorTransition(a: number, b: number, p: number): number {
@@ -34,6 +39,13 @@ export class AppComponent implements OnInit {
   }
 
   private setNewColor() {
+    const sunrise = this.weather.getSunrise();
+    const sunset = this.weather.getSunset();
+    const sunriseDate = moment().hours(sunrise.hours).minutes(sunrise.minutes);
+    const sunsetDate = moment().hours(sunset.hours).minutes(sunset.minutes);
+    const preSunriseDate = sunriseDate.subtract(1, 'hour');
+    const preSunsetDate = sunsetDate.subtract(1, 'hour');
+
     const d = new Date();
     const h = d.getHours();
     const i = 6;
@@ -42,20 +54,20 @@ export class AppComponent implements OnInit {
     let c2 = 0;
     if (h < i) {
       p = h / i;
-      c1 = this.NIGHT;
-      c2 = this.MORNING;
+      c1 = this.SKY_COLORS[0];
+      c2 = this.SKY_COLORS[1];
     } else if (h < 2 * i) {
       p = (h - i) / i;
-      c1 = this.MORNING;
-      c2 = this.AFTERNOON;
+      c1 = this.SKY_COLORS[1];
+      c2 = this.SKY_COLORS[2];
     } else if (h < 3 * i) {
       p = (h - 2 * i) / i;
-      c1 = this.AFTERNOON;
-      c2 = this.EVENING;
+      c1 = this.SKY_COLORS[2];
+      c2 = this.SKY_COLORS[3];
     } else {
       p = (h - 3 * i) / i;
-      c1 = this.EVENING;
-      c2 = this.NIGHT;
+      c1 = this.SKY_COLORS[3];
+      c2 = this.SKY_COLORS[0];
     }
     this.backgroundColor = this.colorTransition(c1, c2, p).toString(16);
   }

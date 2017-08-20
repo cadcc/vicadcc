@@ -24,7 +24,7 @@ export class DateComponent implements OnInit {
     this.WEEK_1 = 31;
     setInterval(() => {
       this.currentTime = moment().format('HH:mm:ss');
-      this.currentDate = moment().format('dddd, D [de] MMMM, YYYY');
+      this.currentDate = moment().format('dddd D [de] MMMM');
       let week = moment().week() - this.WEEK_1;
       week = week < this.CLASS_WEEKS.length ? week : this.CLASS_WEEKS.length - 1;
       this.currentClassWeek = 'Semana ' + this.CLASS_WEEKS[week];

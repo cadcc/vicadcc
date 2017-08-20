@@ -1,6 +1,9 @@
 <div class="weather-component">
-  <img class="weather-image" src={{this.getWeatherImage()}}/>
+  <img class="weather-image" src={{this.getWeather().getWeatherImage()}}/>
   <div class="temperature">
-    {{this.getTemperature()}}
+    {{this.getWeather().getTemperature()}}
+  </div>
+  <div class="weather-attribution">
+    <img src="https://poweredby.yahoo.com/white.png" width="134" height="29"/>
   </div>
 </div>
