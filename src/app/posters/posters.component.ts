@@ -8,7 +8,7 @@ import * as moment from 'moment';
 })
 export class PostersComponent implements OnInit {
 
-  private POSTER_API = 'https://www.cadcc.cl/wp-json/wp/v2/posts?per_page=10&categories=91&_embed';
+  private POSTER_API = 'https://www.cadcc.cl/wp-json/wp/v2/posts?per_page=10&categories=91';
   private posters = [];
   private currentPoster = 0;
 
@@ -37,9 +37,8 @@ export class PostersComponent implements OnInit {
             return;
           }
         }
-        const featured = post._embedded;
-        if ('wp:featuredmedia' in featured) {
-          this.posters.push(featured['wp:featuredmedia'][0]['source_url']);
+        if ('better_featured_image' in post) {
+          this.posters.push(post['better_featured_image']['source_url']);
         }
       });
     }).catch((ex) => {
