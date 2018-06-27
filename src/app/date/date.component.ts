@@ -21,7 +21,7 @@ export class DateComponent implements OnInit {
 
   ngOnInit() {
     moment.locale('es-ES');
-    this.WEEK_1 = 9;
+    this.WEEK_1 = 38;
     setInterval(() => {
       this.currentTime = moment().format('HH:mm:ss');
       this.currentDate = moment().format('dddd D [de] MMMM');
