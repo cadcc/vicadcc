@@ -9,6 +9,7 @@ import * as moment from 'moment';
 export class PostersComponent implements OnInit {
 
   private POSTER_API = 'https://www.cadcc.cl/wp-json/wp/v2/posts?per_page=10&categories=91';
+  private AFICHES_API = 'https://www.u-cursos.cl/api/0/ingenieria/2/afiches/todos?pagina=1';
   private posters = [];
   private currentPoster = 0;
 
@@ -41,13 +42,29 @@ export class PostersComponent implements OnInit {
           this.posters.push(post['better_featured_image']['source_url']);
         }
       });
+    }).then(() => {
+      if (this.posters.length < 10) {
+        fetch(this.AFICHES_API).then((response) => {
+          return response.json();
+        }).then((data) => {
+          data.forEach((item) => {
+            if (this.posters.length < 10) {
+              this.posters.push(item.img_url);
+            }
+          });
+        }).catch((ex) => {
+          console.error('Error fetching afiches', ex);
+        });
+      }
     }).catch((ex) => {
       console.error('Error fetching posters', ex);
     });
   }
 
   public getPosterImage() {
-    if (this.posters.length === 0) return '';
+    if (this.posters.length === 0) {
+        return '';
+    }
     return this.posters[this.currentPoster];
   }
 
