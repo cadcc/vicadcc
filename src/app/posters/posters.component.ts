@@ -38,7 +38,7 @@ export class PostersComponent implements OnInit {
             return;
           }
         }
-        if ('better_featured_image' in post) {
+        if ('better_featured_image' in post && post['better_featured_image'] != null) {
           this.posters.push(post['better_featured_image']['source_url']);
         }
       });
