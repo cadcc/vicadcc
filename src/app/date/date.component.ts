@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -14,15 +14,17 @@ export class DateComponent implements OnInit {
 
   private WEEK_1: number;
 
-  private CLASS_WEEKS = ['1', '2', '3', '4', '5', '6', '7', 'de Vacaciones', 'Olímpica', '8', '9', '10',
-    '11', 'de Vacaciones 1', 'de Vacaciones 2', '12', '13', '14', '15', 'de Exámenes', 'de Inscripción Académica', '1', '2',
-    '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', 'de Exámenes'];
+  private CLASS_WEEKS = ['11', 'de Vacaciones 1',
+    'de Vacaciones 2', '12', '13', '14', '15', 'de Exámenes',
+    'de Inscripción Académica', '1', '2', '3', '4', '5', '6', '7', '8',
+    '9', '10', '11', '12', '13', '14', '15', 'de Exámenes'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     moment.locale('es-ES');
-    this.WEEK_1 = 38;
+    this.WEEK_1 = 28;
     setInterval(() => {
       this.currentTime = moment().format('HH:mm:ss');
       this.currentDate = moment().format('dddd D [de] MMMM');
