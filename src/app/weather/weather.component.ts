@@ -13,7 +13,7 @@ export class WeatherComponent implements OnInit {
   constructor(private weather: WeatherService) { }
 
   ngOnInit() {
-    setInterval(() => this.weather.getWeatherData(), 1000 * 60 * 60);
+    setInterval(() => this.weather.getWeatherData(), 1000 * 60 * 15);
     this.weather.getWeatherData();
   }
 
