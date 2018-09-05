@@ -5,8 +5,8 @@ import { CODE_IMAGES } from './consts';
 export class WeatherService {
 
 
-  private weatherImage = 'clear-day';
-  private temperature = 20;
+  private weatherImage = 'default';
+  private temperature = 99;
   private sunrise = {hours: 6, minutes: 0};
   private sunset = {hours: 18, minutes: 0};
   private DARKSKY_API = 'https://api.cadcc.cl/tiempo/';
