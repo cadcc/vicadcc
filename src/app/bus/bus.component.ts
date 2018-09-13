@@ -37,6 +37,8 @@ export class BusComponent implements OnInit {
         if (this.currentService === totalBuses - 1) {
           this.getBusData();
         }
+      } else {
+        this.currentService = 0;
       }
     }, 1000 * 7 );
 
