@@ -31,7 +31,7 @@ export class DateComponent implements OnInit {
       let week = moment().week() - this.WEEK_1;
       week = week < this.CLASS_WEEKS.length ? week : this.CLASS_WEEKS.length - 1;
       this.currentClassWeek = 'Semana ' + this.CLASS_WEEKS[week];
-    }, 1000);
+    }, 1000 * 60 * 5);
   }
 
   public getCurrentTime() {

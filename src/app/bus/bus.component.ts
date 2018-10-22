@@ -40,7 +40,7 @@ export class BusComponent implements OnInit {
       } else {
         this.currentService = 0;
       }
-    }, 1000 * 7 );
+    }, 1000 * 60 * 2 );
 
   }
 
