@@ -42,22 +42,6 @@ export class PostersComponent implements OnInit {
           this.posters.push(post['better_featured_image']['source_url']);
         }
       });
-    }).then(() => {
-      if (this.posters.length < 10) {
-        fetch(this.AFICHES_API).then((response) => {
-          return response.json();
-        }).then((data) => {
-          data.forEach((item) => {
-            if (this.posters.length < 10) {
-              this.posters.push(item.img_url);
-            }
-          });
-        }).catch((ex) => {
-          console.error('Error fetching afiches', ex);
-        });
-      }
-    }).catch((ex) => {
-      console.error('Error fetching posters', ex);
     });
   }
 
