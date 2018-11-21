@@ -6,7 +6,7 @@ export class WeatherService {
 
 
   private weatherImage = 'default';
-  private temperature = 99;
+  private temperature = -280;
   private sunrise = {hours: 6, minutes: 0};
   private sunset = {hours: 18, minutes: 0};
   private DARKSKY_API = 'https://api.cadcc.cl/tiempo/';
@@ -35,7 +35,12 @@ export class WeatherService {
   }
 
   public getTemperature() {
-    return this.temperature + '°';
+    if (this.temperature < -274) {
+      return 'OoS';
+    }
+    else {
+      return this.temperature + '°';
+    }
   }
 
   public getSunrise() {
