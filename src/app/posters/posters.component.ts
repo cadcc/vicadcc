@@ -31,17 +31,21 @@ export class PostersComponent implements OnInit {
       while (this.posters.length > 0) {
         this.posters.pop();
       }
-      data.forEach((post) => {
-        if (post.screenLimitDate !== '') {
-          const limitDate = moment(post.screenLimitDate);
-          if (moment() > limitDate) {
-            return;
+      if (data) {
+        data.forEach((post) => {
+          if (post.screenLimitDate !== '') {
+            const limitDate = moment(post.screenLimitDate);
+            if (moment() > limitDate) {
+              return;
+            }
           }
-        }
-        if ('better_featured_image' in post && post['better_featured_image'] != null) {
-          this.posters.push(post['better_featured_image']['source_url']);
-        }
-      });
+          if ('better_featured_image' in post && post['better_featured_image'] != null) {
+            this.posters.push(post['better_featured_image']['source_url']);
+          }
+        });
+      } else {
+        this.posters.push('/assets/img/AficheDefault.png');
+      }
     });
   }
 
