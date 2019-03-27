@@ -33,12 +33,16 @@ export class MarqueeComponent implements OnInit {
 
   private generateMarqueeText(signos): string {
     let texto = '';
-    texto += signos.titulo;
-    Object.keys(signos['horoscopo']).forEach((slug) => {
-      const signo = signos['horoscopo'][slug];
-      texto += ' | ' + this.generateSignText(signo);
-    });
-    return texto;
+    if (signos.titulo == null) {
+      return "Horóscopo no disponible :("
+    } else {
+      texto += signos.titulo;
+      Object.keys(signos['horoscopo']).forEach((slug) => {
+        const signo = signos['horoscopo'][slug];
+        texto += ' | ' + this.generateSignText(signo);
+      });
+      return texto;  
+    }
   }
 
   public getMarqueeText() {

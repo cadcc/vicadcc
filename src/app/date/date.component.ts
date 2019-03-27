@@ -14,24 +14,30 @@ export class DateComponent implements OnInit {
 
   private WEEK_1: number;
 
-  private CLASS_WEEKS = ['11', 'de Vacaciones 1',
-    'de Vacaciones 2', '12', '13', '14', '15', 'de Exámenes',
-    'de Inscripción Académica', '1', '2', '3', '4', '5', '6', '7', '8',
-    '9', '10', '11', '12', '13', '14', '15', 'de Exámenes'];
+  private WEEKS_API = 'https://api.cadcc.cl/pantalla/';
+
+  private CLASS_WEEKS: string;
+
 
   constructor() {
   }
 
   ngOnInit() {
     moment.locale('es-ES');
-    this.WEEK_1 = 28;
-    setInterval(() => {
-      this.currentTime = moment().format('HH:mm:ss');
-      this.currentDate = moment().format('dddd D [de] MMMM');
-      let week = moment().week() - this.WEEK_1;
-      week = week < this.CLASS_WEEKS.length ? week : this.CLASS_WEEKS.length - 1;
-      this.currentClassWeek = 'Semana ' + this.CLASS_WEEKS[week];
-    }, 1000);
+    fetch(this.WEEKS_API).then((response) => {
+      return response.json();
+    }).then((data) => {
+      this.WEEK_1 = data.weekOne;
+      this.CLASS_WEEKS = data.weekNames;
+      console.log(this.CLASS_WEEKS);
+      setInterval(() => {
+        this.currentTime = moment().format('HH:mm:ss');
+        this.currentDate = moment().format('dddd D [de] MMMM');
+        let week = moment().week() - this.WEEK_1;
+        week = week < this.CLASS_WEEKS.length ? week : this.CLASS_WEEKS.length - 1;
+        this.currentClassWeek = 'Semana ' + this.CLASS_WEEKS[week];
+      }, 1000);
+    });
   }
 
   public getCurrentTime() {

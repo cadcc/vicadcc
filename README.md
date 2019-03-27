@@ -9,3 +9,8 @@ Aplicación de la Pantalla del CaDCC 2017 desarrollada en Angular, que obtiene i
 * Muestra Imágenes destacadas de una categoría en específico de un Blog de Wordpress con API REST activada.
 * Obtiene información de buses cercanos a la facultad
 * Obtiene información del horóscopo del día de la Tía Yoli.
+
+
+## Cómo hacer build
+
+Hay que tener instaldo angular-cli  y sass (para los estilos), si no no funcionará.
